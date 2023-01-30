@@ -27,6 +27,7 @@ class LinearRegression:
         self.w = None
         self.b = b
 
+
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
       
         """
