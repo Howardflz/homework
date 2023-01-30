@@ -11,6 +11,7 @@ class LinearRegression:
     # In this case, I use a parameter that defaults to True.
     
 
+
     def __init__(self, b = True):
 
         """
