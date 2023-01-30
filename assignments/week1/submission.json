@@ -2,13 +2,11 @@
     "assignment_name": "Assignment 1",
     "contributors": [
         {
-            "name": "Jordan Matelsky",
-            "pennkey": "matelsky"
+            "name": "Fenglong Zhao",
+            "pennkey": "fenglong"
         }
     ],
     "sources": [
-        "https://example.com",
-        "Conversations with TA (include TA's name)",
-        "LLM (include information about the LLM and how it was used)"
+        "https://towardsdatascience.com/linear-regression-using-gradient-descent-97a6c8700931"
     ]
 }
