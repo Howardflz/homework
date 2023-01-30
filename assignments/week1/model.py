@@ -1,18 +1,18 @@
 import numpy as np
 
+
 class LinearRegression:
     """
     A linear regression model that uses matrix closed form to fit the model.
     """
+
     w: np.ndarray
     b: float
 
-    # b means bias? I think, so not sure if we will have bias (the constant intercept) for sure. 
+    # b means bias? I think, so not sure if we will have bias (the constant intercept) for sure.
     # In this case, I use a parameter that defaults to True.
-    
 
-
-    def __init__(self, b = True):
+    def __init__(self, b=True):
 
         """
         Initialization on necessary parameters in class.
@@ -28,9 +28,8 @@ class LinearRegression:
         self.w = None
         self.b = b
 
-
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-      
+
         """
         Closed form method to calculate weights.
 
@@ -48,7 +47,7 @@ class LinearRegression:
         self.w = np.linalg.inv(X.T @ X) @ X.T @ y
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-    
+
         """
         Predict the results with new X.
 
@@ -60,14 +59,12 @@ class LinearRegression:
 
         """
 
-        
         if self.b:
             row = X.shape[0]
             X = np.hstack((np.ones((row, 1)), X))
 
         y_pred = X @ self.w.T
         return y_pred
-        
 
 
 class GradientDescentLinearRegression(LinearRegression):
@@ -76,8 +73,8 @@ class GradientDescentLinearRegression(LinearRegression):
     A linear regression model that uses gradient descent to fit the model.
     """
 
-    def __init__(self, b = True):
-   
+    def __init__(self, b=True):
+
         """
         Initialization on necessary parameters in class.
 
@@ -92,12 +89,9 @@ class GradientDescentLinearRegression(LinearRegression):
         self.w = None
         self.b = b
 
-
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
-  
-
 
         """
         Gradient descent method to calculate optimal weights.
@@ -113,7 +107,6 @@ class GradientDescentLinearRegression(LinearRegression):
 
         """
 
-
         N, D = X.shape
         if self.b:
             X = np.hstack((np.ones((N, 1)), X))
@@ -124,13 +117,6 @@ class GradientDescentLinearRegression(LinearRegression):
         for i in range(epochs):
             gradient = 2 / N * (X.T @ (X @ (self.w) - y))
             self.w -= lr * gradient
-        
-
-
-
-
-
-        
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
@@ -143,15 +129,9 @@ class GradientDescentLinearRegression(LinearRegression):
             np.ndarray: The predicted output.
 
         """
-        
-
 
         N = X.shape[0]
         X = np.hstack((np.ones((N, 1)), X))
-        
+
         y_pred = X @ self.w.T
         return y_pred
-
-
-
-
