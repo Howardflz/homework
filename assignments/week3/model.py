@@ -46,9 +46,9 @@ class MLP(nn.Module):
             input_size = next_num_inputs
 
         self.out = nn.Linear(input_size, num_classes)
-        #self.batchNormal = nn.BatchNorm1d(self.hidden_size)
+        # self.batchNormal = nn.BatchNorm1d(self.hidden_size)
         self.activation = activation()
-        #self.dropout = nn.Dropout(0.5)
+        # self.dropout = nn.Dropout(0.5)
         # self.initializer = initializer
         for l in self.layers:
             initializer(l.weight)
@@ -66,9 +66,9 @@ class MLP(nn.Module):
 
         for layer in self.layers:
             x = layer(x)
-            #x = self.batchNormal(x)
+            # x = self.batchNormal(x)
             x = self.activation(x)
-            #x = self.dropout(x)
+            # x = self.dropout(x)
 
         x = self.out(x)
         return x
