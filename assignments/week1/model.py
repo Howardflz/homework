@@ -13,7 +13,6 @@ class LinearRegression:
     # In this case, I use a parameter that defaults to True.
 
     def __init__(self, b=True):
-
         """
         Initialization on necessary parameters in class.
 
@@ -29,7 +28,6 @@ class LinearRegression:
         self.b = b
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-
         """
         Closed form method to calculate weights.
 
@@ -47,7 +45,6 @@ class LinearRegression:
         self.w = np.linalg.inv(X.T @ X) @ X.T @ y
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-
         """
         Predict the results with new X.
 
@@ -74,7 +71,6 @@ class GradientDescentLinearRegression(LinearRegression):
     """
 
     def __init__(self, b=True):
-
         """
         Initialization on necessary parameters in class.
 
@@ -92,7 +88,6 @@ class GradientDescentLinearRegression(LinearRegression):
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
-
         """
         Gradient descent method to calculate optimal weights.
 
