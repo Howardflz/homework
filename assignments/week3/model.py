@@ -22,7 +22,7 @@ class MLP(nn.Module):
         num_classes: int,
         hidden_count: int = 2,
         activation: Callable = nn.ReLU,
-        initializer: Callable = nn.init.ones_,
+        initializer: Callable = nn.init.xavier_uniform_,
     ) -> None:
         """
         Initialize the MLP.
@@ -39,13 +39,13 @@ class MLP(nn.Module):
         self.layers = nn.ModuleList()
         self.activation = activation()
         self.initializer = initializer
-        self.dropout = nn.Dropout(0.5)
+        # self.dropout = nn.Dropout(0.5)
 
         for i in range(hidden_count):
             next_num_inputs = hidden_size
             self.layer = nn.Linear(input_size, next_num_inputs)
             self.initializer(self.layer.weight)
-            self.layers += [self.layer, self.activation, self.dropout]
+            self.layers += [self.layer, self.activation]
             input_size = next_num_inputs
 
         self.out = nn.Linear(input_size, num_classes)
