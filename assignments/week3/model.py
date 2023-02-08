@@ -37,21 +37,19 @@ class MLP(nn.Module):
         super(MLP, self).__init__()
 
         self.layers = nn.ModuleList()
-        self.hidden_size = hidden_size
-        # self.hidden_size = hidden_size
+        self.activation = activation()
+        self.initializer = initializer
 
         for i in range(hidden_count):
             next_num_inputs = hidden_size
-            self.layers += [nn.Linear(input_size, next_num_inputs)]
+            self.layer = nn.Linear(input_size, next_num_inputs)
+            self.initializer(self.layer.weight)
+            self.layers += [self.layer, self.activation]
             input_size = next_num_inputs
 
         self.out = nn.Linear(input_size, num_classes)
         # self.batchNormal = nn.BatchNorm1d(self.hidden_size)
-        self.activation = activation()
         # self.dropout = nn.Dropout(0.5)
-        # self.initializer = initializer
-        for l in self.layers:
-            initializer(l.weight)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -67,7 +65,6 @@ class MLP(nn.Module):
         for layer in self.layers:
             x = layer(x)
             # x = self.batchNormal(x)
-            x = self.activation(x)
             # x = self.dropout(x)
 
         x = self.out(x)
