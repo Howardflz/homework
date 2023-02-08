@@ -20,7 +20,7 @@ class MLP(nn.Module):
         input_size: int,
         hidden_size: int,
         num_classes: int,
-        hidden_count: int = 1,
+        hidden_count: int = 2,
         activation: Callable = nn.ReLU,
         initializer: Callable = nn.init.ones_,
     ) -> None:
@@ -39,17 +39,17 @@ class MLP(nn.Module):
         self.layers = nn.ModuleList()
         self.activation = activation()
         self.initializer = initializer
+        self.dropout = nn.Dropout(0.5)
 
         for i in range(hidden_count):
             next_num_inputs = hidden_size
             self.layer = nn.Linear(input_size, next_num_inputs)
             self.initializer(self.layer.weight)
-            self.layers += [self.layer, self.activation]
+            self.layers += [self.layer, self.activation, self.dropout]
             input_size = next_num_inputs
 
         self.out = nn.Linear(input_size, num_classes)
         # self.batchNormal = nn.BatchNorm1d(self.hidden_size)
-        # self.dropout = nn.Dropout(0.5)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
