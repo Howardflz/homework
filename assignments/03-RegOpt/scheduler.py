@@ -42,11 +42,11 @@ class CustomLRScheduler(_LRScheduler):
 
         """
 
-        l = []
+        lr_store_list = []
         cur = self.last_epoch
         times = cur // self.step_size
         for i in self.base_lrs:
             lr = i * self.gamma**times
-            l.append(lr)
+            lr_store_list.append(lr)
 
-        return l
+        return lr_store_list
