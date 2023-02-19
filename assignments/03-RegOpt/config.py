@@ -6,9 +6,10 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 
 
 class CONFIG:
+    # try initial learning rate 0.001, 0.005, 0.007, 0.01; 0.005 and 0.01 work better.
     batch_size = 64
     num_epochs = 10
-    initial_learning_rate = 0.01
+    initial_learning_rate = 0.005
     initial_weight_decay = 0
 
     lrs_kwargs = {
