@@ -7,6 +7,8 @@
         }
     ],
     "sources": [
-        "https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html"
+        "https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html",
+        "https://hd10.dev/posts/experiments_cifar10_part2/#cyclical-lrs-and-one-cycle-lr-scheduler",
+        "https://towardsdatascience.com/a-visual-guide-to-learning-rate-schedulers-in-pytorch-24bbb262c863"
     ]
 }
